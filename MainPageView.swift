@@ -22,18 +22,19 @@ struct MainPageView: View {
                 .edgesIgnoringSafeArea(.all)
                 
                 VStack(spacing: 30) {
+
                     // Text above the image
-                    Text("Ready?").underline()
-                        .font(.system(size: isZoomed ? 20 : 40, weight: .heavy))
+                    Text("Ready?")
+                        .font(.system(size: isZoomed ? 20 : 55, weight: .heavy))
                         .foregroundColor(.white.opacity(0.8))
 
                     
                     // Image with constant zoom animation and navigation
-                    NavigationLink(destination: ContentView()) {
+                    NavigationLink(destination: ContentView().navigationBarBackButtonHidden(true)) {
                         Image("brain")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(width: isZoomed ? 95 : 80, height: isZoomed ? 95 : 80)
+                            .frame(width: isZoomed ? 95 : 70, height: isZoomed ? 95 : 70)
                             .onAppear {
                                 // Start a timer to toggle the isZoomed state every second
                                 Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
@@ -45,8 +46,8 @@ struct MainPageView: View {
                     }
                     
                     // Text below the image
-                    Text("Press the brain to begin!").underline()
-                        .font(.system(size: isZoomed ? 28 : 20, weight: .heavy))
+                    Text("Press the brain to start!").underline()
+                        .font(.system(size: isZoomed ? 30 : 20, weight: .heavy))
                         .foregroundColor(.white.opacity(0.8))
 
                 }
