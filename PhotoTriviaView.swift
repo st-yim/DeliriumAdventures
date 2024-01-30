@@ -20,7 +20,20 @@ struct PhotoTriviaView: View {
     var body: some View {
         NavigationView {
             VStack {
-                PhotosPicker("Select Photos", selection: $photosPickerItems, maxSelectionCount: 4, selectionBehavior: .ordered)
+                PhotosPicker(selection: $photosPickerItems, maxSelectionCount: 4, selectionBehavior: .ordered) {
+                    Label("Select Photo", systemImage: "photo")
+//                        .font(.title2)
+//                        .fontWeight(.semibold)
+//                        .foregroundColor(.black)
+//                        .background(
+//                            RoundedRectangle(cornerRadius: 10)
+//                                .fill(Color("green"))
+//                                .shadow(color: Color.black.opacity(0.3), radius: 5, x: 0, y: 3)
+//                        )
+                        
+                }
+                .tint(.accentColor)
+                .buttonStyle(.borderedProminent)
 
                 ScrollView(.horizontal) {
                     LazyHStack() {
@@ -95,11 +108,9 @@ struct PhotoTriviaView: View {
                 // Display or use the extracted DateTimeOriginal values
                 if !dateTimeOriginalList.isEmpty {
                     NavigationLink(destination: PlayView(isPlaying: $isPlaying)) {
-                        Button("Press to play") {
-                            // Toggle the isPlaying state when the button is pressed
+                        GameButtonView(title: "Let's play", color: Color("green"), width: 200, height: 50, action: {
                             isPlaying.toggle()
-                        }
-                        .padding()
+                        })
                     }
                 }
             }

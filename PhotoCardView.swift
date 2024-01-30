@@ -14,7 +14,7 @@ struct PhotoCardView: View {
     let padding: CGFloat = 10
     
     var body: some View {
-        Image(uiImage: images.resizedToWidth(200))
+        Image(uiImage: images)
             .resizable()
             .aspectRatio(contentMode: .fit)
             .scaledToFit()
@@ -24,15 +24,3 @@ struct PhotoCardView: View {
     }
 }
 
-extension UIImage {
-    func resizedToWidth(_ width: CGFloat) -> UIImage {
-        let scale = width / self.size.width
-        let newHeight = self.size.height * scale
-        let newSize = CGSize(width: width, height: newHeight)
-        UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0)
-        self.draw(in: CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height))
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return newImage ?? self
-    }
-}
