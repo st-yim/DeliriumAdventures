@@ -107,25 +107,26 @@ struct PhotoTriviaView: View {
 
                 // Display or use the extracted DateTimeOriginal values
                 if !dateTimeOriginalList.isEmpty {
-                    NavigationLink(destination: PlayView(isPlaying: $isPlaying)) {
-                        GameButtonView(title: "Let's play", color: Color("green"), width: 200, height: 50, action: {
-                            isPlaying.toggle()
-                        })
-                    }
+                    //NavigationLink(destination: PhotoPlayView(isPlaying: $isPlaying)) {
+//                        GameButtonView(title: "Let's Play", color: Color("green"), width: 200, height: 50, action: {
+//                            isPlaying.toggle()
+//                        })
+                        NavigationLink(destination: PhotoPlayView(isPlaying: $isPlaying)) {
+                            Text("Let's Play")
+                                .font(.title2)
+                                .fontWeight(.semibold)
+                                .foregroundColor(.white)
+                                .padding()
+                                .frame(width: CGFloat(200), height: CGFloat(50)) // Set the width and height
+                                .background(
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .fill(Color("green"))
+                                        .shadow(color: Color.black.opacity(0.3), radius: 5, x: 0, y: 3)
+                                )
+                        }
+                    
                 }
             }
-            .navigationBarTitle("Photo Trivia")
-        }
-    }
-}
-
-struct PlayView: View {
-    @Binding var isPlaying: Bool
-
-    var body: some View {
-        VStack {
-            Text("Playing!")
-            // Add your game logic or content here
         }
     }
 }
